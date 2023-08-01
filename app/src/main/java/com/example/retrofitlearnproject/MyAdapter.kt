@@ -9,7 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
+/*
+Adapter Yapısı
 
+class Adapter (parametre tanımlanır):RecyclerView.Adapter<Adapterinİsmi.ViewHolderClassın>{
+
+inner class  class adı (parametre):RecyclerView.ViewHolder(view nesnesi){
+}
+}
+
+
+ */
 
 
 class MyAdapter(var context: Context,var list: List<UsersItem>):RecyclerView.Adapter<MyAdapter.ViewHolder>() {

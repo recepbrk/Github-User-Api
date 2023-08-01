@@ -3,10 +3,22 @@ package com.example.retrofitlearnproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
+/*
+Retrofit Kulanımı için Gereken Adımlar
+1- Dependency -> Retrofit Ve Gson implementetion
+2- Model -> Data class   Json to Data class
+3- İnterface
+4- Layout İşlemleri
+5- Adapter
+6 -Retrofit Code
+
+ */
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,17 +45,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllData() {
 
-
-        var retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        var userApi = RetrofitFM.getRetro()
             .create(ApiInterface::class.java)
 
-        var retroData = retrofit.getData()
 
 
-        retroData.enqueue(object :Callback<List<UsersItem>> {
+
+        userApi.getData().enqueue(object :Callback<List<UsersItem>> {
             override fun onResponse(
                 call: Call<List<UsersItem>>,
                 response: Response<List<UsersItem>>
@@ -55,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<UsersItem>>, t: Throwable) {
-
+                Toast.makeText(this@MainActivity,"HATA VAR VERİLER GELMEDİ",Toast.LENGTH_SHORT).show()
             }
 
         })
